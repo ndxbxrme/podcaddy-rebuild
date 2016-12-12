@@ -1,0 +1,20 @@
+{
+  "name": "pod",
+  "version": "0.0.1",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "build/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.6.0",
+    "angular-lazy-image": "~0.0.10",
+    "angular-route": "~1.6.0",
+    "jquery": "~3.1.1",
+    "SoundManager2": "soundmanager#*"
+  }
+}

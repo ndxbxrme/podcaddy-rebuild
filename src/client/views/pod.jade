@@ -1,0 +1,11 @@
+.pod(ng-class='{playing:pod.playing}', ng-click='podClick($event)')
+  div.img(afkl-lazy-image='{{pod.imageUrl}}')
+  .pod-body
+    .pod-header
+      .pod-title
+        h4 {{pod.title}}
+        h6 {{pod.feedTitle}}
+      .pod-date
+        pre {{pod.pubDate | date}} {{pod.pubDate | date:'shortTime'}}
+    p {{pod.description}}
+    pod-controls

@@ -1,0 +1,45 @@
+@font-face 
+	font-family: 'icomoon'
+	src:url('/fonts/icomoon.eot')
+	src:url('/fonts/icomoon.eot') format('embedded-opentype'),
+		url('/fonts/icomoon.woff') format('woff'),
+		url('/fonts/icomoon.ttf') format('truetype'),
+		url('/fonts/icomoon.svg?-jopb25') format('svg')
+	font-weight: normal
+	font-style: normal
+
+
+[class^="icomoon-"], [class*=" icomoon-"] 
+	font-family: 'icomoon'
+	speak: none
+	font-style: normal
+	font-weight: normal
+	font-variant: normal
+	text-transform: none
+	line-height: 1
+
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+
+
+.icomoon-search:before 
+	content: "\e600"
+
+.icomoon-googleplus:before 
+	content: "\e601"
+
+.icomoon-facebook:before 
+	content: "\e602"
+
+.icomoon-twitter:before 
+	content: "\e603"
+
+.icomoon-github:before 
+	content: "\e604"
+
+.icomoon-pinterest:before 
+	content: "\e605"
+
+.icomoon-paypal:before 
+	content: "\e606"
+

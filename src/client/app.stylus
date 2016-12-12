@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Oswald')
+  
+body
+  font-family arial
+  background #f2f2f2
+  color #333
+  .logo
+    font-family 'Oswald', sans-serif
+    text-align center
+    margin 0px
+  .search
+    margin .5rem
+    padding .2rem
+    outline none
+  .view
+    display flex
+    flex-direction column
+    .pod
+      cursor pointer
+      margin 0.5rem
+      margin-bottom 1rem
+      display flex
+      flex-direction row
+      background #fff
+      padding 1rem
+      box-shadow 0px 10px 20px #e0e0e0
+      h1, h2, h3, h4, h5, h6, p, pre
+        margin 0
+        margin-bottom 0.5rem
+      p
+        line-height 1.5rem
+      h4
+        font-family 'Oswald', sans-serif
+      img
+        width 10rem
+        border-radius 0.5rem
+      .pod-header
+        display flex
+        flex-direction row
+        .pod-date
+          text-align right
+          flex 1
+      .pod-body
+        flex 1
+        margin-left 1rem
+    .playing   
+      .controls
+        .timing
+          text-align right
+        .statusbar
+            height 1rem
+            background #f7f7f7
+            border 1px solid #ccc
+            box-shadow inset 0px 1px 4px #666
+            border-radius 2px
+            position relative
+            .loading
+              position absolute
+              width 0%
+              height 100%
+              background rgba(91,91,91,0.12)
+            .position
+              position absolute
+              width 0%
+              height 100%
+              background linear-gradient(to left, #c21500, #ffc500)
+@media screen and (max-width:568px)
+  body
+    margin 0
+    padding 0
+  .pod
+    flex-direction column!important
+    position relative
+    .img
+      position absolute
+      z-index 0
+      right 1rem
+      top -.6rem
+    img
+      width 5rem!important
+      border-radius 0.2rem!important
+      box-shadow: 0px 0px 3px #666;
+    p
+      font-size 0.8rem
+      line-height 1rem
+      overflow hidden
+    h4, h6
+      display inline-block
+      clear left
+      float left
+      background rgba(255,255,255,0.6)
+    .pod-body
+      margin-left 0!important
+      z-index 1
+    .pod-header
+      flex-direction column!important
+      .pod-date
+        text-align left!important

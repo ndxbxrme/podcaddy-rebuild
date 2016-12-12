@@ -1,0 +1,6 @@
+.controls(ng-click='controlsClick($event)')
+  .timing
+    span.position {{pod.position}}
+  .statusbar
+    .loading(style='width: {{pod.loadPercent}}%')
+    .position(style='width: {{pod.playPercent}}%')
