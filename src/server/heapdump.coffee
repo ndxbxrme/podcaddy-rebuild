@@ -9,7 +9,7 @@
 fs = require('fs')
 profiler = require('v8-profiler')
 _datadir = null
-nextMBThreshold = 500
+nextMBThreshold = 900
 
 ###*
 # Init and scheule heap dump runs
@@ -64,7 +64,7 @@ saveHeapSnapshot = (snapshot, datadir) ->
 
 module.exports.init = (datadir) ->
   _datadir = datadir
-  setInterval tickHeapDump, 500
+  setInterval tickHeapDump, 5000
   return
 
 # ---

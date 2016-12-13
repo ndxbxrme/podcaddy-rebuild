@@ -35,12 +35,16 @@ app.get '/maintenance-off', (req, res) ->
   database.maintenance = false
   res.end 'Maintenance Mode Off'
   
+app.get '/test', (req, res) ->
+  data = database.exec 'SELECT * FROM i INNER JOIN f ON f.i=i.f'
+  res.end JSON.stringify data
+  
 app.post '/api/today', (req, res) ->
   data = []
   if not req.user
-    data = database.exec 'SELECT items.title, items.description, items.url, items.length, items.pubDate, items.slug, feeds.title AS feedTitle, feeds.imageUrl as imageUrl, feeds.slug as feedSlug, feeds.cagegories FROM items LEFT JOIN feeds on items.fid=feeds._id WHERE items.pubDate > ? AND items.pubDate < ? ORDER BY items.pubDate DESC', [new Date().setHours(new Date().getHours() - 24).valueOf(), new Date().valueOf()]
+    data = database.exec 'SELECT i.t as title, i.d as description, i.u as url, i.l as length, i.p as pubDate, i.s as slug, f.t AS feedTitle, f.iu as imageUrl, f.s as feedSlug, f.c as categories FROM i LEFT JOIN f on i.f=f.i WHERE i.p > ? AND i.p < ? ORDER BY i.p DESC', [new Date().setHours(new Date().getHours() - 24).valueOf(), new Date().valueOf()]
   else
-    data = database.exec 'SELECT items.title, items.description, items.url, items.length, items.pubDate, items.slug, feeds.title AS feedTitle, feeds.imageUrl as imageUrl, feeds.slug as feedSlug, feeds.cagegories FROM subs INNER JOIN items ON items.fid=subs.pid LEFT JOIN feeds on items.fid=feeds._id WHERE subs.uid=? AND items.pubDate > ? AND items.pubDate < ? ORDER BY items.pubDate DESC', [req.user._id, new Date().setHours(new Date().getHours() - (24 * 7)).valueOf(), new Date().valueOf()]
+    data = database.exec 'SELECT i.t as title, i.d as description, i.u as url, i.l as length, i.p as pubDate, i.s as slug, f.t AS feedTitle, f.iu as imageUrl, f.s as feedSlug, f.c as categories FROM s INNER JOIN i ON i.f=s.f LEFT JOIN f on i.f=f.i WHERE s.u=? AND i.p > ? AND i.p < ? ORDER BY i.p DESC', [req.user._id, new Date().setHours(new Date().getHours() - (24 * 7)).valueOf(), new Date().valueOf()]
   res.end JSON.stringify data
   
 app.post '/api/refresh-login', (req, res) ->

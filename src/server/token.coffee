@@ -14,7 +14,7 @@ module.exports = (options) ->
         if bits.length is 2
           d = new Date bits[1]
           if d.toString() isnt 'Invalid Date'
-            users = database.exec 'SELECT * FROM users WHERE _id=?', [bits[0]]
+            users = database.exec 'SELECT * FROM u WHERE _id=?', [bits[0]]
             if users and users.length
               req.user = users[0]
     ###

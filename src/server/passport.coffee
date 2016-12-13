@@ -19,7 +19,7 @@ module.exports = (passport, database) ->
     passwordField: 'password'
     passReqToCallback: true
   , (req, email, password, done) ->
-    users = database.exec 'SELECT * FROM users WHERE local->email=?', [email]
+    users = database.exec 'SELECT * FROM u WHERE local->email=?', [email]
     if users and users.length
       return done(null, false, req.flash('signupMessage', 'That email is already taken.'))
     else
@@ -28,14 +28,14 @@ module.exports = (passport, database) ->
         local:
           email: email
           password: generateHash password
-      database.exec 'INSERT INTO users VALUES ?', [newUser]
+      database.exec 'INSERT INTO u VALUES ?', [newUser]
       done null, newUser
   passport.use 'local-login', new LocalStrategy
     usernameField: 'email'
     passwordField: 'password'
     passReqToCallback: true
   , (req, email, password, done) ->
-    users = database.exec 'SELECT * FROM users WHERE local->email=?', [email]
+    users = database.exec 'SELECT * FROM u WHERE local->email=?', [email]
     if users and users.length
       if not validPassword password, users[0].local.password
         return done(null, false, req.flash('loginMessage', 'Wrong password'))
@@ -51,10 +51,10 @@ module.exports = (passport, database) ->
   , (req, token, tokenSecret, profile, done) ->
     process.nextTick ->
       if not req.user
-        users = database.exec 'SELECT * FROM users WHERE twitter->id=?', [profile.id]
+        users = database.exec 'SELECT * FROM u WHERE twitter->id=?', [profile.id]
         if users and users.length
           if not users[0].twitter.token
-            database.exec 'UPDATE users SET twitter=? WHERE _id=?', [
+            database.exec 'UPDATE u SET twitter=? WHERE _id=?', [
               {
                 id: profile.id
                 token: token
@@ -73,10 +73,10 @@ module.exports = (passport, database) ->
               token: token
               username: profile.username
               displayName: profile.displayName
-          database.exec 'INSERT INTO users VALUES ?', [newUser]
+          database.exec 'INSERT INTO u VALUES ?', [newUser]
           return done null, newUser
       else
-        database.exec 'UPDATE users SET twitter=? WHERE _id=?', [
+        database.exec 'UPDATE u SET twitter=? WHERE _id=?', [
           {
             id: profile.id
             token: token
