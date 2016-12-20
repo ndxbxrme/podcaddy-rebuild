@@ -4,7 +4,8 @@
     .pod-header
       .pod-title
         h4 {{pod.title}}
-        h6 {{pod.feedTitle}}
+        h6 
+          a(href='/{{pod.feedSlug}}') {{pod.feedTitle}}
       .pod-date
         pre {{pod.pubDate | date}} {{pod.pubDate | date:'shortTime'}}
     p {{pod.description}}

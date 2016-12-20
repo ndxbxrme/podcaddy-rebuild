@@ -1,0 +1,24 @@
+div
+  .toolbar.rows
+    .details-row(ng-show='getPod().url')
+      .podcast-details
+        .feed-name {{ getPod().feedTitle }}
+        .feed-title {{ getPod().title }}
+        .position
+    .controls-row
+      .menu
+        .button(ng-click='showMenu()') Menu
+          .menu-anchor
+      .controls
+        i.icon-previous
+        i.icon-backward
+        i.icon-play2.big(ng-hide='getPod().playing && !getPod().paused', ng-click='togglePlay()')
+        i.icon-stop.big(ng-show='getPod().playing && !getPod().paused', ng-click='togglePlay()')
+        i.icon-forward2
+        i.icon-next
+      .volume
+        i.icon-volume-high(ng-show='getVolume()===100', ng-click='setVolume(0)')
+        i.icon-volume-mute2(ng-show='getVolume()===0', ng-click='setVolume(33)')
+        i.icon-volume-low(ng-show='getVolume()===33', ng-click='setVolume(66)')
+        i.icon-volume-medium(ng-show='getVolume()===66', ng-click='setVolume(100)')
+  .toolbar-spacer(ng-show='getPod().url')

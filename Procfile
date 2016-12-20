@@ -1,0 +1,1 @@
+web: node --expose-gc build/server/app.js

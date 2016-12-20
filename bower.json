@@ -11,6 +11,7 @@
     "tests"
   ],
   "dependencies": {
+    "alasql": "~0.3.4",
     "angular": "~1.6.0",
     "angular-lazy-image": "~0.0.10",
     "angular-route": "~1.6.0",

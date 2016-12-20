@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "header.js",
+  "sourceRoot": "../../../../src/client/scripts/directives/",
+  "sources": [
+    "header.directive.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;EAAA;EAEA,OAAO,CAAC,MAAR,CAAe,KAAf,CACA,CAAC,SADD,CACW,QADX,EACqB,SAAA;WACnB;MAAA,QAAA,EAAU,IAAV;MACA,WAAA,EAAa,oBADb;MAEA,OAAA,EAAS,IAFT;MAGA,KAAA,EAAO,EAHP;MAIA,IAAA,EAAM,SAAC,KAAD,EAAQ,IAAR,GAAA,CAJN;;EADmB,CADrB;AAFA"
+}

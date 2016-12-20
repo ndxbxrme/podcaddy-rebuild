@@ -1,0 +1,3 @@
+input.search(type='text', ng-model='search', ng-change='triggerScroll()')
+.feeds
+  feed(ng-repeat='feed in feeds | filter:search')

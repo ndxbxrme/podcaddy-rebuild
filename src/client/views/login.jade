@@ -1,0 +1,29 @@
+.login-holder(ng-hide='getUser()')
+  .login-form
+    p Login or Sign Up
+    form(name='loginForm', novalidate, ng-submit='login()')
+      div
+        input(type='email', name='email', required, ng-model='email', placeholder='Email address')
+        span.error(ng-show='submitted && loginForm.email.$error.email') Please use a valid looking email address
+        span.error(ng-show='submitted && loginForm.email.$error.required') Please use a valid looking email address
+        br
+        input(type='password', name='password', required, ng-model='password', placeholder='Password')
+        small.error(ng-show='submitted && loginForm.password.$error.required') A password is required
+      div
+        input.button(type='submit', value='Login')
+        | &nbsp;
+        input.button.white(type='button', ng-click='signup()', value='Sign Up')
+      div
+        p or with one of these...
+      .social
+        a.button(href='/api/twitter', target='_self')
+          i.icomoon-twitter
+          | &nbsp;Twitter
+        | &nbsp;
+        a.button(href='/api/facebook', target='_self')
+          i.icomoon-facebook
+          | &nbsp;Facebook
+        | &nbsp;
+        a.button(href='/api/github', target='_self')
+          i.icomoon-github
+          | &nbsp;Github

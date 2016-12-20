@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "clickscreen.js",
+  "sourceRoot": "../../../../src/client/scripts/directives/",
+  "sources": [
+    "clickscreen.directive.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;EAAA;EAEA,OAAO,CAAC,MAAR,CAAe,KAAf,CACA,CAAC,SADD,CACW,aADX,EAC0B,SAAC,MAAD;WACxB;MAAA,QAAA,EAAU,IAAV;MACA,OAAA,EAAS,KADT;MAEA,KAAA,EAAO,EAFP;MAGA,IAAA,EAAM,SAAC,KAAD,EAAQ,IAAR;QACJ,KAAK,CAAC,UAAN,GAAmB,MAAM,CAAC;eAC1B,KAAK,CAAC,UAAN,GAAmB,MAAM,CAAC;MAFtB,CAHN;;EADwB,CAD1B;AAFA"
+}

@@ -8,6 +8,7 @@ angular.module 'pod'
   link: (scope, elem) ->
     scope.pod.displayed = true
     scope.podClick = (e) ->
-      player.podClick scope.pod
+      if e.target.tagName isnt 'A' and e.target.parentNode.tagName isnt 'A'
+        player.podClick scope.pod
     scope.$on '$destroy', ->
       scope.pod.displayed = false

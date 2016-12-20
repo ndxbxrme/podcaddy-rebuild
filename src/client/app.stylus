@@ -2,8 +2,186 @@
   
 body
   font-family arial
-  background #f2f2f2
+  background url(https://images.unsplash.com/photo-1480487453552-4d3c7d1d65e1?dpr=1&auto=compress,format&fit=crop&w=1199&h=1199&q=80&cs=tinysrgb&crop=) #f7f7f7
+  background-attachment fixed
+  background-size cover
   color #333
+  margin 0
+  padding 0
+  .button
+    border 1px solid #ccc
+    padding 0.1rem 0.7rem
+    border-radius 3px
+    box-shadow inset -1px -1px 3px #ccc
+    position relative
+    cursor pointer
+    font-family 'Oswald', sans-serif
+  .white
+    background #fff
+  .login-holder
+    display flex
+    flex-direction column
+    align-items center
+    .login-form
+      margin 1rem
+      padding 0 1rem
+      background #fff
+      box-shadow 0px 10px 20px #e0e0e0
+      p
+        margin 0.2rem 0
+        font-family 'Oswald', sans-serif
+      input[type='email'], input[type='password']
+        width 100%
+        box-sizing border-box
+        padding 0.3rem
+        outline none
+        margin-bottom 0.6rem
+      form
+        text-align right
+      .social
+        a
+          text-decoration none
+          color #333
+          font-size 0.8rem
+          i
+            font-size 1rem
+        
+  .menu-holder
+    z-index 1000
+    position fixed
+    top 0
+    left 0
+  .popout
+    position fixed
+    background #fff
+    padding 0.3rem
+    border 1px solid #666
+    box-shadow 1px 1px 2px #666
+    z-index 400
+    font-family 'Oswald', sans-serif
+    .link
+      padding 0.5rem
+      cursor pointer
+      i
+        margin-right 1rem
+      &.disabled
+        opacity 0.3
+        pointer-events none
+      &:hover
+        color #abbbfe
+  .clickscreen
+    position fixed
+    width 100%
+    height 100%
+    background rgba(0, 0, 0, 0)
+    z-index 200
+    pointer-events none
+    &.enabled
+      pointer-events all
+      background rgba(0,0,0,0.1)
+  .toolbar-spacer
+    height 4rem
+  .toolbar
+    text-align center
+    position fixed
+    width 100%
+    background #fff
+    border-bottom 1px solid #ccc
+    box-sizing border-box
+    padding 0.3rem
+    z-index 100
+    .details-row
+      display flex
+      justify-content center
+      .podcast-details
+        border 1px solid #ccc
+        width 16rem
+        margin 0.3rem
+        padding 0.3rem
+        border-radius 3px
+        box-shadow inset 1px 1px 2px #ccc
+        background #fafdfc
+        text-align left
+        font-family 'Oswald', sans-serif
+        overflow hidden
+        color #666
+        .feed-name
+          font-size 0.6rem
+          overflow hidden
+          text-overflow ellipsis
+          white-space nowrap
+        .feed-title
+          overflow hidden
+          text-overflow ellipsis
+          white-space nowrap
+    .controls-row
+      display flex
+      justify-content center
+      align-items center
+      i
+        cursor pointer
+        font-size 1.8rem
+        margin 1px
+      .big
+        font-size 2.3rem
+      .volume i
+          font-size 1.2rem
+          cursor pointer
+      .menu
+        text-align left
+        flex 1
+        font-family 'Oswald', sans-serif
+        display flex
+        .button
+          .menu-anchor
+            position absolute
+            top 110%
+            left 60%
+      .volume
+        text-align right
+        flex 1
+      .controls
+        display flex
+        justify-content center
+        align-items center
+  .addfeed
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    z-index 1000
+    display flex
+    justify-content center
+    align-items center
+    .title
+      margin-bottom 0.3rem
+      display flex
+      width 100%
+      align-items center
+      .left
+        i 
+          margin-left 0.5rem
+      .right
+        text-align right
+        flex 1
+        i
+          cursor pointer
+    form
+      display flex
+      align-items center
+    .addfeed-success
+      img
+        width 200px
+    .addfeed-error
+      .error-body, .error-title
+        margin-bottom 0.5rem
+        margin-right 1rem
+    .clickscreen
+      background rgba(0,0,0,0.2)
+  .header
+    padding-top 3.5rem
+    padding-bottom 0.5rem
   .logo
     font-family 'Oswald', sans-serif
     text-align center
@@ -12,6 +190,50 @@ body
     margin .5rem
     padding .2rem
     outline none
+  .feeds
+    display flex
+    flex-wrap wrap
+    justify-content space-around
+    .feed
+      margin 0.5rem
+      background #fff
+      box-shadow inset 1px 1px 2px #ccc, 0px 10px 20px #e0e0e0
+      .feed-body
+        padding 0.2rem
+        cursor pointer
+        .img
+          position relative
+          overflow hidden
+          .feed-description
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+            overflow hidden
+            text-overflow ellipsis
+            background rgba(255,255,255,0.9)
+            transform translate(-100%, 0)
+            font-family 'Oswald', sans-serif
+            transition 0.2s
+        &:hover
+          .img
+            .feed-description
+              transform translate(0, 0)
+        .feed-title
+          overflow hidden
+          text-overflow ellipsis
+          white-space nowrap
+          width 200px
+          font-family 'Oswald', sans-serif
+      .feed-controls
+        .button
+          text-align center
+          font-size 1.3rem
+          &.subscribe
+            color green
+          &.unsubscribe
+            color red
   .view
     display flex
     flex-direction column
@@ -24,6 +246,11 @@ body
       background #fff
       padding 1rem
       box-shadow 0px 10px 20px #e0e0e0
+      a
+        text-decoration none
+        color #333
+        &:hover
+          color #abbbfe
       h1, h2, h3, h4, h5, h6, p, pre
         margin 0
         margin-bottom 0.5rem
@@ -39,6 +266,7 @@ body
         flex-direction row
         .pod-date
           text-align right
+          margin-left 0.3rem
           flex 1
       .pod-body
         flex 1
@@ -65,9 +293,6 @@ body
               height 100%
               background linear-gradient(to left, #c21500, #ffc500)
 @media screen and (max-width:568px)
-  body
-    margin 0
-    padding 0
   .pod
     flex-direction column!important
     position relative
@@ -79,7 +304,7 @@ body
     img
       width 5rem!important
       border-radius 0.2rem!important
-      box-shadow: 0px 0px 3px #666;
+      box-shadow 0px 0px 3px #666
     p
       font-size 0.8rem
       line-height 1rem

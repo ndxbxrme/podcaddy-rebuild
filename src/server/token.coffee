@@ -5,7 +5,7 @@ module.exports = (options) ->
   database = options.database
   return (req, res, next) ->
     req.user = null
-    if req.cookies.podcaddy
+    if req.cookies.podcaddy and not database.maintenance()
       decrypted = ''
       try
         decrypted = crypto.Rabbit.decrypt(req.cookies.podcaddy, process.env.SESSION_SECRET).toString(crypto.enc.Utf8)

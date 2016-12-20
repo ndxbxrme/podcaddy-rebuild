@@ -8,7 +8,7 @@ angular.module 'pod'
     else
       $http.post '/api/refresh-login'
       .then (data) ->
-        if data and data isnt 'error'
+        if data and data.data isnt 'error'
           user = data.data
           defer.resolve user
         else 

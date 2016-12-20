@@ -2,9 +2,10 @@
 crypto = require 'crypto-js'
 
 postAuthenticate = (req, res, next) ->
+  console.log 'post authenticate', req.user
   if req.user
     cookieText = req.user._id + '||' + new Date().toString()
-    cookieText = crypto.Rabbit.encrypt(cookieText, 'podcaddy').toString()
+    cookieText = crypto.Rabbit.encrypt(cookieText, process.env.SESSION_SECRET).toString()
     res.cookie 'podcaddy', cookieText, maxAge: 7 * 24 * 60 * 60 * 1000
   res.redirect '/'
 module.exports = (app, passport) ->

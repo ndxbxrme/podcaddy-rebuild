@@ -1,0 +1,28 @@
+.menu-holder
+  .clickscreen(ng-click='hideMenu()', ng-class='{enabled:getMenuOut()}')
+  .popout(ng-show='getMenuOut()')
+    .link(ng-click="goTo('/')")
+      i.icon-play2
+      | Home
+    .link(ng-click="goTo('/feeds')")
+      i.icon-book
+      | Podcast Directory
+    div(ng-show='getUser()')
+      .link(ng-click="addFeed()")
+        i.icon-rss
+        | Add a Podcast
+      .link(ng-click="setDirection('DESC')" ng-class="{disabled:getDirection()==='DESC'}")
+        i.icon-arrow-down
+        | Show Newest First
+      .link(ng-click="setDirection('ASC')" ng-class="{disabled:getDirection()==='ASC'}")
+        i.icon-arrow-up
+        | Show Oldest First
+      .link(ng-click="setFilter('unlistened')" ng-class="{disabled:getFilter()==='unlistened'}")
+        i.icon-rss
+        | Show Unlistened
+      .link(ng-click="setFilter('listened')" ng-class="{disabled:getFilter()==='listened'}")
+        i.icon-volume-high
+        | Show Listened
+      .link(ng-click="setFilter('all')" ng-class="{disabled:getFilter()==='all'}")
+        i.icon-volume-low
+        | Show All

@@ -1,0 +1,8 @@
+.feed
+  .feed-body(ng-click='goTo()')
+    .feed-title {{feed.feedTitle}}
+    div.img(afkl-lazy-image='{{feed.imageUrl}}')
+      .feed-description {{feed.feedDescription}}
+  .feed-controls
+    .button.subscribe(ng-hide='feed.subscribed', ng-click='subscribe()') Subscribe
+    .button.unsubscribe(ng-show='feed.subscribed', ng-click='unsubscribe()') Unsubscribe

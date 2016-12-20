@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "feeds.js",
+  "sourceRoot": "../../../../src/client/scripts/controllers/",
+  "sources": [
+    "feeds.coffee"
+  ],
+  "names": [],
+  "mappings": "AAAA;EAAA,OAAO,CAAC,MAAR,CAAe,KAAf,CACA,CAAC,UADD,CACY,WADZ,EACyB,SAAC,MAAD,EAAS,KAAT,EAAgB,OAAhB;IACvB,KAAK,CAAC,IAAN,CAAW,YAAX,CACA,CAAC,IADD,CACM,SAAC,GAAD;aACJ,MAAM,CAAC,KAAP,GAAe,GAAG,CAAC;IADf,CADN;WAIA,MAAM,CAAC,aAAP,GAAuB,SAAA;MACrB,OAAO,CAAC,QAAR,CAAiB,OAAO,CAAC,OAAzB,EAAkC,MAAM,CAAC,OAAP,GAAiB,CAAnD;aACA,OAAO,CAAC,GAAR,CAAY,QAAZ;IAFqB;EALA,CADzB;AAAA"
+}

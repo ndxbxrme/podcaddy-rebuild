@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'pod'
-.factory 'player', ($timeout, $http, $window) ->
+.factory 'player', ($timeout, $http, $window, database) ->
   soundManager.setup
     flashVersion: 9
     preferFlash: false
@@ -9,8 +9,12 @@ angular.module 'pod'
     url: 'bower/SoundManager2/swf/'
     
   pods = []
-  lastPod = null
+  lastPod = {}
   lastSound = null
+  volume = 66
+  data =
+    feedSlug: ''
+  soundManager.setVolume volume
   
   events =
     play: ->
@@ -38,6 +42,9 @@ angular.module 'pod'
       $timeout ->
         lastPod.playPercent = lastSound.position / getDurationEstimate(lastSound) * 100
         lastPod.position = getTime(lastSound.position) + ' / ' + getTime(getDurationEstimate(lastSound))
+        if lastPod.playPercent > 10 and not lastPod.reportedListen
+          lastPod.reportedListen = true
+          $http.post '/api/report-listen', podId: lastPod._id
     whileloading: ->
       $timeout ->
         lastPod.loadPercent = lastSound.bytesLoaded / lastSound.bytesTotal * 100
@@ -58,6 +65,9 @@ angular.module 'pod'
     
   skip = (pod) ->
     foundPod = false
+    if not pod
+      foundPod = true
+      pod = url:''
     for mpod in pods
       if mpod.url is pod.url
         foundPod = true
@@ -92,15 +102,47 @@ angular.module 'pod'
         onerror: events.error
       lastPod = pod
       lastSound.play()
+      database.setCurrent lastPod
+      soundManager.setVolume volume
+      
+  sortPods = ->
+    if direction and direction.value is 'ASC'
+      pods.sort (a, b) ->
+        a.pubDate - b.pubDate
+    else
+      pods.sort (a, b) ->
+        b.pubDate - a.pubDate
+  
+  scrollABit = ->
+    $timeout ->
+      $window.scrollTo $window.scrollX, $window.scrollY + 1
+  direction = database.getDirection()
+  filter = database.getFilter()
+  current = database.getCurrent()
+  #if current
+  #togglePlay current
+  #togglePlay current  
+    
   getPods: ->
     pods
+  getPod: ->
+    lastPod
   podClick: (pod) ->
     console.log 'podClick'
-    togglePlay pod
+    if not pod
+      skip null
+    else
+      togglePlay pod
+  setVolume: (vol) ->
+    volume = vol
+    soundManager.setVolume volume
+  getVolume: ->
+    volume
   fetchPods: ->  
-    scrollY = $window.scrollY
-    console.log 'fetching pods'
-    $http.post '/api/today'
+    #scrollY = $window.scrollY
+    #pods = []
+    console.log 'fetching pods', data, 'baaa'
+    $http.post '/api/pods', data
     .then (response) ->
       $timeout ->
         for pod in pods
@@ -117,8 +159,8 @@ angular.module 'pod'
         for rpod in response.data
           if not rpod.exists
             pods.push rpod
-        pods.sort (a, b) ->
-          b.pubDate - a.pubDate
+        sortPods()
+        scrollABit()
     , ->
       console.log 'error'
   setPosition: (pos) ->
@@ -128,3 +170,24 @@ angular.module 'pod'
     if not isNaN nMsecOffset
       lastSound.setPosition nMsecOffset
     lastSound.resume()
+  setFeedSlug: (slug) ->
+    data.feedSlug = slug
+  setDirection: (dir) ->
+    database.setDirection value:dir
+    direction = database.getDirection()
+    sortPods()
+    scrollABit()
+  getDirection: ->
+    if direction and direction.value
+      return direction.value
+    return 'DESC'
+  setFilter: (newFilter) ->
+    database.setFilter value:newFilter
+    filter = database.getFilter()
+    scrollABit()
+  getFilter: ->
+    if filter and filter.value
+      return filter.value
+    return 'unlistened'
+  scrollABit: ->
+    scrollABit()

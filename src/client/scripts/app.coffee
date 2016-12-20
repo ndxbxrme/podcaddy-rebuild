@@ -5,17 +5,22 @@ angular.module 'pod', [
   'afkl.ng.lazyImage'
 ]
 .config ($routeProvider, $locationProvider) ->
-  console.log 'made it'
   $routeProvider
-  .when '/',
+  .when '/feeds',
+    templateUrl: '/views/feeds.html'
+    controller: 'FeedsCtrl'
+  .when '/:feedSlug?',
     templateUrl: '/views/main.html'
     controller: 'MainCtrl'
+  .otherwise
+    redirectTo: '/'
   $locationProvider.html5Mode true
-.run (auth, socket) ->
+.run ($rootScope, $window, $timeout, auth, socket, player) ->
   auth.getUserPromise()
   .then (user) ->
-    console.log 'user', user
     if user
       socket.emit 'user', user._id
   , ->
     socket.emit 'user', ''
+  $rootScope.$on '$routeChangeSuccess', ->
+    $window.scrollTo 0, 1

@@ -1,0 +1,21 @@
+.addfeed(ng-show='getAddFeedOut()')
+  .popout
+    .title 
+      .left
+        | Add a Podcast
+        i.icon-rss
+      .right
+        i.icon-cancel-circle(ng-click='hideAddFeed()')
+    .body(ng-show='!error && !success')
+      form(name='addFeedForm', ng-submit='addFeed()')
+        input(type='text', ng-model='feedUrl', required, placeholder='RSS Url')
+        input.button(type='submit', value='Add Podcast')
+    .addfeed-success(ng-show='success')
+      .feed-title {{feed.t}}
+      img(src='{{feed.iu}}')
+      .button(ng-click='ok()') OK
+    .addfeed-error(ng-show='error')
+      .error-title There was an error
+      .error-body {{error}}
+      .button(ng-click='ok()') OK
+  .clickscreen
